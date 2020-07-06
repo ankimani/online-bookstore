@@ -24,8 +24,40 @@ import lombok.ToString;
 @ToString
 public class Book {
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	 private Long id;
+	
+
+	@Column(name="sku")
+	private String sku;
+	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="unit_price")
+	private BigDecimal unitPrice;
+	
+	@Column(name="image_url")
+	private String imageUrl;
+	
+	@Column(name ="active")
+	private Boolean active;
+	
+	@Column(name ="units_in_stock")
+	private Integer unitsInStock;
+	
+	@Column(name ="date_created")
+	private Date createdOn;
+	
+	@Column(name ="last_updated")
+    private Date updatedOn;
+	
+	@ManyToOne
+	@JoinColumn(name ="category_id", nullable=false)
+	private BookCategory category;
 	
 	public Long getId() {
 		return id;
@@ -114,36 +146,5 @@ public class Book {
 	public void setCategory(BookCategory category) {
 		this.category = category;
 	}
-
-	@Column(name="sku")
-	private String sku;
-	
-	@Column(name="name")
-	private String name;
-	
-	@Column(name="description")
-	private String description;
-	
-	@Column(name="unit_price")
-	private BigDecimal unitPrice;
-	
-	@Column(name="image_url")
-	private String imageUrl;
-	
-	@Column(name ="active")
-	private Boolean active;
-	
-	@Column(name ="units_in_stock")
-	private Integer unitsInStock;
-	
-	@Column(name ="date_created")
-	private Date createdOn;
-	
-	@Column(name ="last_updated")
-    private Date updatedOn;
-	
-	@ManyToOne
-	@JoinColumn(name ="category_id", nullable=false)
-	private BookCategory category;
 
 }
